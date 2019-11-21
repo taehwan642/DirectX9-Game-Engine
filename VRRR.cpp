@@ -110,7 +110,8 @@ void CALLBACK OnD3D9DestroyDevice( void* pUserContext )
 //--------------------------------------------------------------------------------------
 // Initialize everything and go into a render loop
 //--------------------------------------------------------------------------------------
-INT WINAPI wWinMain( HINSTANCE, HINSTANCE, LPWSTR, int )
+//INT WINAPI wWinMain( HINSTANCE, HINSTANCE, LPWSTR, int )
+int main(void)
 {
     // Enable run-time memory check for debug builds.
 #if defined(DEBUG) | defined(_DEBUG)
