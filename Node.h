@@ -3,7 +3,7 @@ class Node
 {
 public:
 	Node();
-	virtual ~Node();
+	virtual ~Node() {};
 
 	vector2 _position;
 	vector2 _scale;
@@ -17,7 +17,7 @@ public:
 
 	D3DXMATRIX GetMatrix();
 
-	virtual void Update();
-	virtual void Draw();
+	virtual void Update() {};
+	virtual void Draw() {};
 };
 
