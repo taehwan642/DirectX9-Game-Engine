@@ -1,5 +1,7 @@
 #pragma once
-class Renderer
+#include "Type.h"
+class Renderer : public SingleTon<Renderer>
 {
+
 };
 
