@@ -384,6 +384,16 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Director.cpp" />
+    <ClCompile Include="Node.cpp" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="Singleton.cpp" />
+    <ClCompile Include="Sprite.cpp" />
+    <ClInclude Include="Director.h" />
+    <ClInclude Include="Node.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="Singleton.h" />
+    <ClInclude Include="Sprite.h" />
     <None Include="DXUT\Optional\directx.ico" />
     <ClInclude Include="DXUT\Core\DXUT.h" />
     <ClInclude Include="DXUT\Core\DXUTenum.h" />

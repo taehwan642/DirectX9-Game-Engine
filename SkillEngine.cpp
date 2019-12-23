@@ -30,7 +30,7 @@ void CALLBACK OnD3D9DestroyDevice( void* pUserContext )
 {
 	exit(0);
 }
-
+Onmouse
 
 //INT WINAPI wWinMain( HINSTANCE, HINSTANCE, LPWSTR, int )
 int main(void)

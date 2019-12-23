@@ -348,6 +348,6 @@ void      WINAPI DXUTDestroyState(); // Optional method to destroy DXUT's memory
 
 #endif
 
-
+typedef D3DXVECTOR2 Vec2;
 
 
