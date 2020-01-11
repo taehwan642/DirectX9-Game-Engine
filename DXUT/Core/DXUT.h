@@ -347,7 +347,9 @@ void      WINAPI DXUTDestroyState(); // Optional method to destroy DXUT's memory
 
 
 #endif
+#include <iostream>
+#include <string>
 
-typedef D3DXVECTOR2 Vec2;
-
-
+#define ScreenWidth 1280
+#define ScreenHeight 960
+using namespace std;

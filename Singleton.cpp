@@ -1,5 +1,5 @@
 #include "DXUT.h"
-#include "Singleton.h"
+#include "SingleTon.h"
 
-float Time::deltatime = 0;
 float Time::timescale = 1;
+float Time::deltatime = 0;

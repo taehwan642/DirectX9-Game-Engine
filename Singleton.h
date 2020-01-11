@@ -1,21 +1,19 @@
 #pragma once
-
 template <class T>
-class Singleton
+class SingleTon
 {
 private:
 	static T* instance;
 public:
-	static T* Getinstance()
+	static T* getInstance()
 	{
-		if (instance == null)
+		if (instance == nullptr)
 			instance = new T();
-
 		return instance;
 	}
 };
 
-template <class T>  T* Singleton<T>::instance = nullptr;
+template <class T> T* SingleTon<T>::instance = nullptr;
 
 class Time
 {
