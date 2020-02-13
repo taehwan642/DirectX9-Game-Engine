@@ -17,6 +17,11 @@ HRESULT CALLBACK OnD3D9CreateDevice( IDirect3DDevice9* pd3dDevice, const D3DSURF
                                      void* pUserContext )
 {
     Director::Instance()->ChangeScene(new TestScene);// 새로운 TestScene 할당
+    cout << "                                    _____ _   _ _ _ _____         _        \n";
+    cout << "                                   |   __| |_|_| | |   __|___ ___|_|___ ___ \n";
+    cout << "                                   |__   | '_| | | |   __|   | . | |   | -_|\n";
+    cout << "                                   |_____|_,_|_|_|_|_____|_|_|_  |_|_|_|___|\n";
+    cout << "                                                             |___|          \n";
     return S_OK;
 }
 

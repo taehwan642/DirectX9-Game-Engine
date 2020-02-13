@@ -349,5 +349,9 @@ void      WINAPI DXUTDestroyState(); // Optional method to destroy DXUT's memory
 #endif
 
 
-#include "iostream"
+#include <iostream>
+#include <string>
 using namespace std;
+#include <list>
+typedef D3DXVECTOR2 Vector2;
+typedef D3DXCOLOR Color;

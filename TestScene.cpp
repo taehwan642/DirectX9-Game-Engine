@@ -3,7 +3,7 @@
 
 void TestScene::Create()
 {
-	cout << "TestScene CREATE!" << endl;;
+	//cout << "TestScene CREATE!" << endl;;
 }
 
 void TestScene::Update()
