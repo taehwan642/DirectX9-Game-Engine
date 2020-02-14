@@ -1,21 +1,24 @@
 #include "DXUT.h"
 #include "Director.h"
 
-Director::Director()
+void Director::DirectorInit()
 {
-	_currentScene = nullptr; // 씬 초기화
+	_currentScene = nullptr;
+	_sprite = nullptr;
+	D3DXCreateSprite(DXUTGetD3D9Device(), &_sprite); // Device에 Sprite를 생성함.
+}
+
+void Director::ChangeScene(Scene* scene)
+{
+	if (_currentScene)
+		_currentScene->OnExit();
+	_currentScene = scene;
+	_currentScene->Create();
 }
 
 void Director::UpdateScene()
 {
-	_currentScene->Update(); // 씬 업데이트
-}
-
-void Director::ChangeScene(Scene* nextscene)
-{
-	if (_currentScene)// 만약 현재 씬이 있을땐
-		_currentScene->OnExit(); // 나가기
-
-	_currentScene = nextscene; // 다음 씬으로 변환
-	_currentScene->Create(); // 다음 씬의 시작!
+	if(_currentScene)
+		_currentScene->Update();
+	Renderer::Instance()->Render(); // 씬이 업데이트됨과 동시에 렌더하게해줌.
 }

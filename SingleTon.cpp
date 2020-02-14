@@ -1,2 +1,2 @@
 #include "DXUT.h"
-#include "SingleTon.h"
+#include "Singleton.h"

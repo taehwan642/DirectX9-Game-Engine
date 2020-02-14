@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
 // Microsoft Visual C++ generated include file.
-// Used by SkillEngine2020.rc
+// Used by 2020Study.rc
 //
 #define IDI_MAIN_ICON                   101
 

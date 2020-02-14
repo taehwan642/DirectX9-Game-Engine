@@ -1,14 +1,16 @@
-#include "SingleTon.h"
-#include "Scene.h"
 #pragma once
-class Director :public SingleTon<Director> // 부모 상속
+#include "Singleton.h"
+#include "Scene.h"
+#include "Renderer.h"
+class Director : public Singleton<Director>
 {
 private:
-	Scene* _currentScene;// 현재 나의 씬
+	Scene* _currentScene;
+	LPD3DXSPRITE _sprite; // Director가 가지고 있을 sprite
 public:
-	Director(); // 생성자
-
-	void UpdateScene(); // 씬을 업데이트시켜줄 함수
-	void ChangeScene(Scene* nextscene);	// 씬을 바꿔줄 함수
+	void DirectorInit();
+	void ChangeScene(Scene* scene);
+	void UpdateScene();
+	LPD3DXSPRITE GetSprite() { return _sprite; }; // _sprite를 리턴해주는 함수
 };
 
