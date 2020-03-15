@@ -2,8 +2,8 @@
 class Scene
 {
 public:
-	virtual void Create() {};
-	virtual void Update() {};
-	virtual void OnExit() {};
+	virtual void Init() = 0;
+	virtual void Update() = 0;
+	virtual void Exit() = 0;
 };
 

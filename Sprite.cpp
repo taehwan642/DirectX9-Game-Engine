@@ -1,47 +1,48 @@
 #include "DXUT.h"
 #include "Sprite.h"
-#include "Director.h"
-#include "Renderer.h"
+
 Sprite::Sprite()
 {
-	texture = nullptr; // 초기화
+	mTexture = nullptr;
+	mSprite = nullptr;
+	D3DXCreateSprite(DXUTGetD3D9Device(), &mSprite);
 }
 
 Sprite::~Sprite()
 {
-	Renderer::Instance()->RemoveRenderTarget(this); // 소멸될때 나 자신을 렌더시키지 않게 함
+	Renderer::GetIns()->DeleteRenderTarget(this);
 }
 
-void Sprite::SetTexture(wstring filename)
+void Sprite::SetTexture(wstring path)
 {
-	texture = TextureMNG::Instance()->LoadTexture(filename); // 나 자신이 가지고 있는 텍스쳐를 경로 설정한 사진대로 입힘
-	AddRenderTarget(); // 입힌 뒤 나 자신을 렌더시킴
+	mTexture = TexMNG::GetIns()->LoadTexture(path);
+	AddRendertarget();
 }
 
-void Sprite::AddRenderTarget()
+void Sprite::AddRendertarget()
 {
-	Renderer::Instance()->AddRenderTarget(this); // 나 자신을 렌더하게 함
+	Renderer::GetIns()->AddRenderTarget(this);
 }
+
 RECT Sprite::GetRect()
 {
-	RECT r = { 0,0,0,0 };
-	r.right = _position.x + (texture->_info.Width / 2 * _scale.x);
-	r.left = _position.x - (texture->_info.Width / 2 * _scale.x);
-	r.top = _position.y - (texture->_info.Height / 2 * _scale.y);
-	r.bottom = _position.y + (texture->_info.Height / 2 * _scale.y);
+	RECT r;
+	r.right = mPosition.x + (mTexture->minfo.Width / 2 * mScale.x);
+	r.left = mPosition.x - (mTexture->minfo.Width / 2 * mScale.x);
+	r.bottom = mPosition.y + (mTexture->minfo.Height / 2 * mScale.y);
+	r.top = mPosition.y - (mTexture->minfo.Height / 2 * mScale.y);
 	return r;
 }
-void Sprite::Render()
-{
 
-	if (!_visible) // 내가 활동하지 않으면 렌더하지 않게 함
+void Sprite::Draw()
+{
+	if (!mVisible)
 		return;
-	if (texture == nullptr) // 나의 텍스쳐가 없으면 렌더하지 않게 함
+	if (mTexture == nullptr)
 		return;
-	//내가 UI라면 카메라에 따른 영향을 받지 않게 하고, UI가 아니라면 카메라의 영향을 받게 함
-	_isUI ? Director::Instance()->GetSprite()->Begin(D3DXSPRITE_ALPHABLEND) : Director::Instance()->GetSprite()->Begin(D3DXSPRITE_ALPHABLEND | D3DXSPRITE_OBJECTSPACE);
-	Director::Instance()->GetSprite()->SetTransform(&GetMatrix()); // 나의 scale, rotation, position을 설정
-	Vector3 center = { _pivot.x * texture->_info.Width,_pivot.y * texture->_info.Height,0 }; // 나의 중심점을 잡음
-	Director::Instance()->GetSprite()->Draw(texture->_texture, nullptr, &center, nullptr, _color); // 나 자신을 그림
-	Director::Instance()->GetSprite()->End(); // 더이상 나 자신을 덧씌우면 메모리 손실이 나기에 그만 그림
+	mIsUI ? mSprite->Begin(D3DXSPRITE_ALPHABLEND) : mSprite->Begin(D3DXSPRITE_ALPHABLEND | D3DXSPRITE_OBJECTSPACE);
+	mSprite->SetTransform(&GetMatrix());
+	vec3 center = { mPivot.x * mTexture->minfo.Width,mPivot.y * mTexture->minfo.Height, 0 };
+	mSprite->Draw(mTexture->mtexture, nullptr, &center, nullptr, mColor);
+	mSprite->End();
 }

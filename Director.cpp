@@ -3,22 +3,22 @@
 
 void Director::DirectorInit()
 {
-	_currentScene = nullptr;
-	_sprite = nullptr;
-	D3DXCreateSprite(DXUTGetD3D9Device(), &_sprite); // Device¿¡ Sprite¸¦ »ı¼ºÇÔ.
+	mcurrentScene = nullptr;
+	Camera::GetIns()->CameraInit();
 }
 
-void Director::ChangeScene(Scene* scene)
+void Director::SceneSet(Scene* s)
 {
-	if (_currentScene)
-		_currentScene->OnExit();
-	_currentScene = scene;
-	_currentScene->Create();
+	if (mcurrentScene != nullptr)
+		mcurrentScene->Exit();
+	mcurrentScene = s;
+	mcurrentScene->Init();
 }
 
-void Director::UpdateScene()
+void Director::SceneUpdate()
 {
-	if(_currentScene)
-		_currentScene->Update();
-	Renderer::Instance()->Render(); // ¾ÀÀÌ ¾÷µ¥ÀÌÆ®µÊ°ú µ¿½Ã¿¡ ·»´õÇÏ°ÔÇØÁÜ.
+	if (mcurrentScene != nullptr)
+		mcurrentScene->Update();
+	Camera::GetIns()->Update();
+	Renderer::GetIns()->Render();
 }

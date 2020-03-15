@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
 // Microsoft Visual C++ generated include file.
-// Used by 2020Study.rc
+// Used by AquariumDX.rc
 //
 #define IDI_MAIN_ICON                   101
 
