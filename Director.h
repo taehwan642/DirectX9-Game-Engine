@@ -2,14 +2,14 @@
 #include "Singleton.h"
 #include "Scene.h"
 #include "Renderer.h"
-#include "Camera.h"
-class Director : public Singleton<Director>
+class Director :
+	public Singleton<Director>
 {
 private:
-	Scene* mcurrentScene;
+	Scene* currentScene;
 public:
 	void DirectorInit();
-	void SceneSet(Scene* s);
-	void SceneUpdate();
+	void SetScene(Scene* scene);
+	void UpdateScene();
 };
 

@@ -3,14 +3,14 @@ template <class T>
 class Singleton
 {
 private:
-	static T* minstance;
+	static T* ins;
 public:
-	static T* GetIns() 
+	static T* getins()
 	{
-		if (minstance == nullptr)
-			minstance = new T();
-		return minstance;
+		if (ins == nullptr)
+			ins = new T();
+		return ins;
 	}
 };
 
-template<class T> T* Singleton<T>::minstance = nullptr;
+template <class T>T* Singleton<T>::ins = nullptr;

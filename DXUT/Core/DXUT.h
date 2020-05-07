@@ -31,7 +31,6 @@
 #define _WIN32_WINNT   0x0600
 #endif
 
-
 // #define DXUT_AUTOLIB to automatically include the libs needed for DXUT 
 #ifdef DXUT_AUTOLIB
 #pragma comment( lib, "dxerr.lib" )
@@ -346,18 +345,22 @@ void      WINAPI DXUTDestroyState(); // Optional method to destroy DXUT's memory
 #include "DXUTmisc.h"
 #include "DXUTenum.h"
 
-
-#endif
 #include <iostream>
-#include <string>
-#include <ctime>
-#include <vector>
 #include <list>
+#include <vector>
+#include <string>
+
 using namespace std;
 
-typedef D3DXVECTOR2 vec2;
-typedef D3DXVECTOR3 vec3;
-typedef D3DCOLOR color;
-#define Screen_Width 1280
-#define Screen_Height 720
-#define CamIns Camera::GetIns()
+#define ScreenWidth 1280
+#define ScreenHeight 720
+
+typedef D3DXVECTOR2 Vec2;
+typedef D3DXVECTOR3 Vec3;
+typedef D3DXCOLOR Color;
+
+#endif
+
+
+
+

@@ -1,30 +1,30 @@
 #include "DXUT.h"
 #include "Texture.h"
 
-Texture* TexMNG::LoadTexture(wstring path)
+Texture* TextureMNG::LoadTexture(wstring filepath)
 {
-	for (auto it : ltexturepool)
+	for (auto it : texturepool)
 	{
-		if (it->mfilename == path)
+		if (it->filename == filepath)
 			return it;
 	}
 
-	auto route = L"res/" + path;
-	Texture* texture = new Texture();
-	texture->mfilename = path;
-
-	auto isFail = D3DXCreateTextureFromFileEx(DXUTGetD3D9Device(), route.c_str(), -2, -2, 1, 0,
-		D3DFORMAT::D3DFMT_A8B8G8R8, D3DPOOL_MANAGED, D3DX_FILTER_NONE, D3DX_FILTER_NONE, 0, &texture->minfo, nullptr, &texture->mtexture);
+	auto route = L"res/" + filepath;
+	Texture* tex = new Texture();
+	tex->filename = filepath;
+	auto isFail = D3DXCreateTextureFromFileEx(DXUTGetD3D9Device(), route.c_str(), -2, -2, 1, 0, D3DFORMAT::D3DFMT_A8B8G8R8, D3DPOOL::D3DPOOL_MANAGED,
+		D3DX_FILTER_NONE, D3DX_FILTER_NONE, 0, &tex->info, nullptr, &tex->texture);
+	
 	if (FAILED(isFail))
 	{
-		wcout << "LOAD FAIL " << route << endl;
-		delete texture;
+		wcout << "LOAD FAIL " << route.c_str() << endl;
+		delete tex;
 		return nullptr;
 	}
 	else
 	{
-		wcout << "LOAD COMPLETE " << route << endl;
-		ltexturepool.push_back(texture);
-		return texture;
+		wcout << "LOAD COMPLETE " << route.c_str() << endl;
+		texturepool.push_back(tex);
+		return tex;
 	}
 }

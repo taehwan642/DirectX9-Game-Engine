@@ -3,15 +3,16 @@
 class Texture
 {
 public:
-	D3DXIMAGE_INFO minfo;
-	LPDIRECT3DTEXTURE9 mtexture;
-	wstring mfilename;
+	wstring filename;
+	D3DXIMAGE_INFO info;
+	IDirect3DTexture9* texture;
 };
 
-class TexMNG : public Singleton<TexMNG>
+class TextureMNG : 
+	public Singleton<TextureMNG>
 {
 private:
-	list<Texture*> ltexturepool;
+	list<Texture*> texturepool;
 public:
-	Texture* LoadTexture(wstring path);
+	Texture* LoadTexture(wstring filepath);
 };

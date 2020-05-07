@@ -18,6 +18,7 @@ char (*RtlpNumberOf( UNALIGNED T (&)[N] ))[N];
 #define RTL_NUMBER_OF_V2(A) (sizeof(*RtlpNumberOf(A)))
 #define ARRAYSIZE(A)    RTL_NUMBER_OF_V2(A)
 #endif
+
 auto __vsnwprintf = _vsnwprintf;
 
 //--------------------------------------------------------------------------------------

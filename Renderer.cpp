@@ -3,27 +3,27 @@
 
 bool Renderer::Comp(Node* a, Node* b)
 {
-	return a->mLayer < b->mLayer;
+	return (a->layer < b->layer);
 }
 
 void Renderer::AddRenderTarget(Node* n)
 {
-	if (find(lrendertargets.begin(), lrendertargets.end(), n) != lrendertargets.end())
+	if (find(rendertargets.begin(), rendertargets.end(), n) != rendertargets.end())
 		return;
-	lrendertargets.push_back(n);
-	lrendertargets.sort(Comp);
+	rendertargets.push_back(n);	
+	rendertargets.sort(Comp);
 }
 
-void Renderer::DeleteRenderTarget(Node* n)
+void Renderer::RemoveRenderTarget(Node* n)
 {
-	lrendertargets.remove(n);
+	rendertargets.remove(n);
 }
 
 void Renderer::Render()
-{	
-	for (auto it : lrendertargets)
+{
+	for (auto it : rendertargets)
 	{
-		it->Draw();
 		it->Update();
+		it->Draw();
 	}
 }

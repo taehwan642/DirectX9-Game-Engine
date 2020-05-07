@@ -2,18 +2,18 @@
 class Node
 {
 public:
-	vec2 mScale;
-	vec2 mPosition;
-	vec2 mPivot;
-	vec2 nv;
-	float mRotation;
-	bool mVisible;
-	bool mIsUI;
-	color mColor;
-	int mLayer;
-	D3DXMATRIX GetMatrix();
 	Node();
 	virtual ~Node() {};
+	Vec2 position;
+	Vec2 scale;
+	Vec2 pivot;
+	Vec2 nv;
+	Color color;
+	int layer;
+	float rotation;
+	bool visible;
+	bool isUI;
+	D3DXMATRIX GetMatrix();
 	virtual void Draw() {};
 	virtual void Update() {};
 };

@@ -3,46 +3,47 @@
 
 Sprite::Sprite()
 {
-	mTexture = nullptr;
-	mSprite = nullptr;
-	D3DXCreateSprite(DXUTGetD3D9Device(), &mSprite);
+	sprite = nullptr;
+	texture = nullptr;
+	D3DXCreateSprite(DXUTGetD3D9Device(), &sprite);
 }
 
 Sprite::~Sprite()
 {
-	Renderer::GetIns()->DeleteRenderTarget(this);
+	Renderer::getins()->RemoveRenderTarget(this);
 }
 
-void Sprite::SetTexture(wstring path)
+void Sprite::SetTexture(wstring filepath)
 {
-	mTexture = TexMNG::GetIns()->LoadTexture(path);
-	AddRendertarget();
+	texture = TextureMNG::getins()->LoadTexture(filepath);
+	AddRenderTarget();
 }
 
-void Sprite::AddRendertarget()
+void Sprite::AddRenderTarget()
 {
-	Renderer::GetIns()->AddRenderTarget(this);
+	Renderer::getins()->AddRenderTarget(this);
 }
 
 RECT Sprite::GetRect()
 {
-	RECT r;
-	r.right = mPosition.x + (mTexture->minfo.Width / 2 * mScale.x);
-	r.left = mPosition.x - (mTexture->minfo.Width / 2 * mScale.x);
-	r.bottom = mPosition.y + (mTexture->minfo.Height / 2 * mScale.y);
-	r.top = mPosition.y - (mTexture->minfo.Height / 2 * mScale.y);
+	RECT r = { 0,0,0,0 };
+	r.right = position.x + (texture->info.Width / 2 * scale.x);
+	r.left = position.x - (texture->info.Width / 2 * scale.x);
+	r.top = position.y - (texture->info.Height / 2 * scale.y);
+	r.bottom = position.y + (texture->info.Height / 2 * scale.y);
 	return r;
 }
 
 void Sprite::Draw()
 {
-	if (!mVisible)
+	if (!visible)
 		return;
-	if (mTexture == nullptr)
+	if (texture == nullptr)
 		return;
-	mIsUI ? mSprite->Begin(D3DXSPRITE_ALPHABLEND) : mSprite->Begin(D3DXSPRITE_ALPHABLEND | D3DXSPRITE_OBJECTSPACE);
-	mSprite->SetTransform(&GetMatrix());
-	vec3 center = { mPivot.x * mTexture->minfo.Width,mPivot.y * mTexture->minfo.Height, 0 };
-	mSprite->Draw(mTexture->mtexture, nullptr, &center, nullptr, mColor);
-	mSprite->End();
+
+	isUI ? sprite->Begin(D3DXSPRITE_ALPHABLEND) : sprite->Begin(D3DXSPRITE_ALPHABLEND | D3DXSPRITE_OBJECTSPACE);
+	sprite->SetTransform(&GetMatrix());
+	Vec3 center = { pivot.x * texture->info.Width,pivot.y * texture->info.Height,0 };
+	sprite->Draw(texture->texture, nullptr, &center, nullptr, color);
+	sprite->End();
 }

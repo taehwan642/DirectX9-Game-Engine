@@ -1,16 +1,18 @@
 #pragma once
+#include "Director.h"
 #include "Node.h"
 #include "Texture.h"
-#include "Renderer.h"	
-class Sprite : public Node
+#include "Renderer.h"
+class Sprite :
+	public Node
 {
 public:
-	Texture* mTexture;
-	LPD3DXSPRITE mSprite;
+	Texture* texture;
+	LPD3DXSPRITE sprite;
 	Sprite();
 	~Sprite();
-	void SetTexture(wstring path);
-	void AddRendertarget();
+	void SetTexture(wstring filepath);
+	void AddRenderTarget();
 	RECT GetRect();
 	void Draw() override;
 };

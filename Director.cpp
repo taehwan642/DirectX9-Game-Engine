@@ -3,22 +3,22 @@
 
 void Director::DirectorInit()
 {
-	mcurrentScene = nullptr;
-	Camera::GetIns()->CameraInit();
+	currentScene = nullptr;
 }
 
-void Director::SceneSet(Scene* s)
+void Director::SetScene(Scene* scene)
 {
-	if (mcurrentScene != nullptr)
-		mcurrentScene->Exit();
-	mcurrentScene = s;
-	mcurrentScene->Init();
+	if (currentScene != nullptr)
+		currentScene->Exit();
+	currentScene = scene;
+	currentScene->Init();
 }
 
-void Director::SceneUpdate()
+void Director::UpdateScene()
 {
-	if (mcurrentScene != nullptr)
-		mcurrentScene->Update();
-	Camera::GetIns()->Update();
-	Renderer::GetIns()->Render();
+	if (currentScene != nullptr)
+	{
+		Renderer::getins()->Render();
+		currentScene->Update();
+	}
 }
